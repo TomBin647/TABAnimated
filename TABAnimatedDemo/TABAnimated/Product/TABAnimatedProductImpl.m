@@ -107,7 +107,8 @@
     production = [self.productionPool objectForKey:className];
     if (production == nil || _controlView.tabAnimated.containNestAnimation) {
         view = [self _createViewWithOrigin:origin controlView:controlView indexPath:indexPath className:className currentClass:currentClass isNeedProduct:YES];
-        [self _prepareProductWithView:view currentClass:currentClass indexPath:indexPath origin:origin needSync:YES needReset:_controlView.tabAnimated.containNestAnimation];
+        //add by gb
+        [self _prepareProductWithView:view currentClass:currentClass indexPath:indexPath origin:origin needSync:IS_IPAD ? NO : YES needReset:_controlView.tabAnimated.containNestAnimation];
         return view;
     }
     
@@ -178,6 +179,10 @@
 }
 
 - (void)destory {
+    //add by gb ipad分屏适配 删除索引
+    if (IS_IPAD) {
+        self.productIndex = 0;
+    }
     [self.darkModeManager destroy];
     [self.targetViewArray removeAllObjects];
 }

@@ -96,7 +96,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)exchangeDelegateOldSel:(SEL)oldSelector newSel:(SEL)newSelector target:(id)target delegate:(id)delegate;
 
 - (void)startAnimationWithIndex:(NSInteger)index isFirstLoad:(BOOL)isFirstLoad controlView:(UIView *)controlView;
-- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView;
+//change by gb
+- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView destoryAllCache:(BOOL)destoryAll;
 
 - (void)reloadAnimation;
 - (BOOL)reloadAnimationWithIndex:(NSInteger)index;

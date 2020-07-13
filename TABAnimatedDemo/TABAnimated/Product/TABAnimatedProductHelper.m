@@ -136,6 +136,21 @@ static const CGFloat kTagLabelMinWidth = 15.f;
     if (production.backgroundLayer.frame.size.height == 0. && view.layer.bounds.size.height > 0.) {
         production.backgroundLayer.frame = view.layer.bounds;
     }
+    
+    //add by gb ipad 分屏适配
+    if (IS_IPAD) {
+        if (production.backgroundLayer.frame.size.width != view.layer.bounds.size.width && production.backgroundLayer.frame.size.height != view.layer.bounds.size.height) {
+            production.backgroundLayer.frame = view.layer.bounds;
+        }
+        //ipad 分屏时候 删除原有的layer
+        for (CALayer * subLayer in view.layer.sublayers) {
+            if ([subLayer isKindOfClass:[TABComponentLayer class]]) {
+                [subLayer removeAllAnimations];
+                [subLayer removeFromSuperlayer];
+            }
+        }
+    }
+    
     [view.layer addSublayer:production.backgroundLayer];
     for (NSInteger i = 0; i < production.layers.count; i++) {
         TABComponentLayer *layer = production.layers[i];

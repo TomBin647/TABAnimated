@@ -110,6 +110,9 @@ extern int const TABAnimatedIndexTag;
 - (void)tab_startAnimationWithRow:(NSInteger)row delayTime:(CGFloat)delayTime completion:(void (^)(void))completion;
 - (void)tab_endAnimationWithRow:(NSInteger)row;
 
+//add by gb ipad 分屏适配
+- (void)viewWillTransitionToSizeAndRefreshTheView;
+
 @end
 
 NS_ASSUME_NONNULL_END

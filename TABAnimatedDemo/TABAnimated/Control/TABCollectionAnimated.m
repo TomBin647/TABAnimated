@@ -147,8 +147,12 @@ NSString * const TABViewAnimatedFooterPrefixString = @"tab_footer_";
     return self;
 }
 
-- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView {
+//change by gb
+- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView destoryAllCache:(BOOL)destoryAll {
     UICollectionView *collectionView = (UICollectionView *)controlView;
+    if (destoryAll) {
+        [self.producter destory];
+    }
     if (index == TABAnimatedIndexTag) {
         [collectionView reloadData];
     }else if (self.runMode == TABAnimatedRunBySection) {

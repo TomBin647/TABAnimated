@@ -100,6 +100,16 @@ const int TABAnimatedIndexTag = -100000;
     });
 }
 
+//add by gb ipad 分屏适配
+- (void)viewWillTransitionToSizeAndRefreshTheView {
+    if (self.tabAnimated.state == TABViewAnimationEnd) return;
+    TABFormAnimated *tabAnimated = (TABFormAnimated *)self.tabAnimated;
+    UIScrollView *scrollView = (UIScrollView *)self;
+    tabAnimated.oldScrollEnabled = scrollView.scrollEnabled;
+    scrollView.scrollEnabled = tabAnimated.scrollEnabled;
+    [tabAnimated refreshWithIndex:0 controlView:self destoryAllCache:YES];
+}
+
 - (void)_startViewAnimationWithIsFirstLoad:(BOOL)isFirstLoad {
     if (self.tabAnimatedProduction.backgroundLayer.hidden == YES) {
         self.tabAnimatedProduction.backgroundLayer.hidden = NO;

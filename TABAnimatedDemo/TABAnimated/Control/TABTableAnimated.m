@@ -215,10 +215,13 @@
 }
 
 #pragma mark -
-
-- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView {
+//change by gb
+- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView destoryAllCache:(BOOL)destoryAll {
     
     UITableView *tableView = (UITableView *)controlView;
+    if (destoryAll) {
+        [self.producter destory];
+    }
     
     if (tableView.estimatedRowHeight != 0) {
         self.oldEstimatedRowHeight = tableView.estimatedRowHeight;

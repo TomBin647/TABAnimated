@@ -94,6 +94,19 @@
     [self.collectionView tab_startAnimation];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+
+    [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
+        
+        [self.collectionView layoutSubviews];
+        [self.collectionView viewWillTransitionToSizeAndRefreshTheView];
+    }                            completion:^(id <UIViewControllerTransitionCoordinatorContext> _Nonnull context) {
+        [self.collectionView reloadData];
+        [self.view layoutIfNeeded];
+    }];
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
+
 #pragma mark - Lazy Methods
 
 - (UICollectionView *)collectionView {

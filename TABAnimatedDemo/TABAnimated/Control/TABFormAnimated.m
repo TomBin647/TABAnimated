@@ -41,7 +41,8 @@
 - (void)exchangeDelegate:(UIView *)target {}
 - (void)exchangeDataSource:(UIView *)target {}
 - (void)registerViewToReuse:(UIView *)view {}
-- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView {}
+//change by gb
+- (void)refreshWithIndex:(NSInteger)index controlView:(UIView *)controlView destoryAllCache:(BOOL)destoryAll {}
 
 - (BOOL)prepareDataWithIndex:(NSInteger)index isFirstLoad:(BOOL)isFirstLoad controlView:(UIView *)controlView {
     
@@ -82,7 +83,8 @@
 
 - (void)startAnimationWithIndex:(NSInteger)index isFirstLoad:(BOOL)isFirstLoad controlView:(UIView *)controlView {
     if ([self prepareDataWithIndex:index isFirstLoad:isFirstLoad controlView:controlView]) {
-        [self refreshWithIndex:index controlView:controlView];
+        //change by gb
+        [self refreshWithIndex:index controlView:controlView destoryAllCache:NO];
         [self updateLoadCount];
     }
 }

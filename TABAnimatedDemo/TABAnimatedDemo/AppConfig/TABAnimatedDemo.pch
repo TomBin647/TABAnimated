@@ -17,4 +17,6 @@
 
 #define kText(x) (NSLocalizedString(x, nil))
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 #endif /* TABAnimatedDemo_pch */
