@@ -55,7 +55,7 @@
     }
 
     // 停止动画,并刷新数据
-    [self.collectionView tab_endAnimation];
+//    [self.collectionView tab_endAnimation];
 }
 
 #pragma mark - UICollectionViewDelegate & UICollectionViewDataSource
@@ -98,7 +98,10 @@
 
     [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
         
+        self.collectionView.frame = CGRectMake(0, kNavigationHeight, [UIApplication sharedApplication].keyWindow.frame.size.width, [UIApplication sharedApplication].keyWindow.frame.size.height - kNavigationHeight);
+        
         [self.collectionView layoutSubviews];
+        [self changeCellSize];
         [self.collectionView viewWillTransitionToSizeAndRefreshTheView];
     }                            completion:^(id <UIViewControllerTransitionCoordinatorContext> _Nonnull context) {
         [self.collectionView reloadData];
@@ -112,7 +115,7 @@
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight, kScreenWidth, kScreenHeight-kNavigationHeight)            collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight, [UIApplication sharedApplication].keyWindow.frame.size.width, [UIApplication sharedApplication].keyWindow.frame.size.height-kNavigationHeight)            collectionViewLayout:layout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
@@ -144,6 +147,10 @@
         };
     }
     return _collectionView;
+}
+
+- (void)changeCellSize {
+    _collectionView.tabAnimated.cellSize = [NewsCollectionViewCell cellSize];
 }
 
 @end

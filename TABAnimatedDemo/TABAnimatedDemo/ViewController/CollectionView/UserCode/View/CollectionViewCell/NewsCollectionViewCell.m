@@ -12,7 +12,7 @@
 #define mLeft 15
 #define headImgWidth 40
 #define imgCount 3
-#define imgWidth ([UIScreen mainScreen].bounds.size.width - 10*2 - mLeft*2)/3
+#define imgWidth ([UIApplication sharedApplication].keyWindow.frame.size.width - 10*2 - mLeft*2)/3
 
 @interface NewsCollectionViewCell()
 
@@ -28,8 +28,8 @@
 @implementation NewsCollectionViewCell
 
 + (CGSize)cellSize {
-    return CGSizeMake([UIScreen mainScreen].bounds.size.width,
-                      10+headImgWidth+80+10+([UIScreen mainScreen].bounds.size.width-10*2-15*2)/3+10);
+    return CGSizeMake([UIApplication sharedApplication].keyWindow.frame.size.width,
+                      10+headImgWidth+80+10+([UIApplication sharedApplication].keyWindow.frame.size.width-10*2-15*2)/3+10);
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
